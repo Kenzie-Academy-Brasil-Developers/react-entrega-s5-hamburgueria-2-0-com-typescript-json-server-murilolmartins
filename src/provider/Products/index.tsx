@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useCallback,
+} from "react";
 import { api } from "../../services/api";
 
 interface Products {
@@ -26,15 +32,14 @@ const ProductsContext = createContext<ProductsContextProps>(
 export const ProductProvider = ({ children }: ProviderProps) => {
   const [products, setProducts] = useState<Products[]>([]);
 
-  const loadProducts = () => {
+  const loadProducts = useCallback(() => {
     api
       .get("/products")
       .then((response) => {
-        console.log(response.data);
         setProducts(response.data);
       })
       .catch((err) => console.log(err));
-  };
+  }, []);
 
   const productsSearch = (search: string) => {
     if (search === "") {

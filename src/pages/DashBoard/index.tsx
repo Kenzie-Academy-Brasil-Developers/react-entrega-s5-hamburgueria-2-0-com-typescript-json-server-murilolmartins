@@ -12,7 +12,7 @@ const DashBoard = () => {
 
   useEffect(() => {
     loadProducts();
-  }, []);
+  }, [loadProducts]);
   return (
     <Container>
       <Header></Header>
