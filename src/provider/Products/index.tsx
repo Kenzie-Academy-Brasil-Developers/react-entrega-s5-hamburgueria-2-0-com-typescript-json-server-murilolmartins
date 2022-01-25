@@ -41,8 +41,9 @@ export const ProductProvider = ({ children }: ProviderProps) => {
       loadProducts();
     } else {
       const insensitiveCase = new RegExp(search, "i");
-      const filteredProducts = products.filter((prod) =>
-        insensitiveCase.test(prod.name || prod.category)
+      const filteredProducts = products.filter(
+        (prod) =>
+          insensitiveCase.test(prod.name) || insensitiveCase.test(prod.category)
       );
       setProducts(filteredProducts);
     }

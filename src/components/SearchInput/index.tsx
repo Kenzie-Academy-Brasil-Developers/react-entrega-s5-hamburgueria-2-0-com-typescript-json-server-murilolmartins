@@ -15,7 +15,10 @@ const SearchInput = ({ isSearch }: SearchInputProps) => {
       <input
         type="text"
         placeholder="Digitar pesquisa"
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => {
+          productsSearch(e.target.value);
+          setSearch(e.target.value);
+        }}
       />
       <button onClick={() => productsSearch(search)}>
         <div className="icon_container">
